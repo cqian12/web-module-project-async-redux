@@ -1,26 +1,40 @@
 import axios from "axios"
 
-export const FETCH_STONK = 'FETCH_STONK'
+export const FETCH_START = 'FETCH_START'
 export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 export const FETCH_FAIL = 'FETCH_FAIL'
 
-export const getStonk = () => {
+export const getStonk = (id) => {
     return (dispatch) => {
-        dispatch(fetchStonk())
+        dispatch(fetchStart())
         axios.get('https://dashboard.nbshare.io/api/v1/apps/reddit')
         .then(res => {
-            dispatch(fetchSuccess(res.data.results[0]))
+            console.log(res.data)
+            dispatch(stonkSuccess(res.data.results[0]))
         })
         .catch(err => dispatch(fetchFail(err)))
     }
 }
 
-export const fetchStonk = () => {
-    return ({type:FETCH_STONK})
+export const getQuote = () => {
+    return (dispatch) => {
+        dispatch(fetchStart())
+        axios.get('https://movie-quote-api.herokuapp.com/v1/quote/')
+        .then(res => dispatch(quoteSuccess(res.data.results)))
+        .catch(err => dispatch(fetchFail(err)))
+    }
 }
 
-export const fetchSuccess = (stonk) => {
+export const fetchStart = () => {
+    return ({type:FETCH_START})
+}
+
+export const stonkSuccess = (stonk) => {
     return ({type:FETCH_SUCCESS, payload:stonk})
+}
+
+export const quoteSuccess = (quotation) => {
+    return ({type:FETCH_SUCCESS, payload:quotation})
 }
 
 export const fetchFail = (error) => {

@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react'
 import Stonk from './components/Stonk'
+import Quote from './components/Quote'
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <header className="App-header">
       </header>
       <h1>🚀🚀Stonks🚀🚀</h1>
-      <Stonk />
+      <Quote />
     </div>
   );
 }

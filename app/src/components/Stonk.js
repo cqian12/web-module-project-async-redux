@@ -1,12 +1,13 @@
-import React, { useEffect } from "react"
-import { fetchStonk, fetchFail } from './../actions'
+import React, { useState, useEffect } from "react"
+import { getStonk } from './../actions'
 import { connect } from 'react-redux'
 
 const Stonk = (props) => {
     const { stonk, fetching, error } = props
+    const [stonkNum, setStonkNum] = useState(0)
 
     useEffect(() => {
-        props.fetchStonk()
+        props.getStonk(stonkNum)
     }, [])
 
     if (error) {
@@ -18,7 +19,8 @@ const Stonk = (props) => {
     }
 
     const handleClick = () => {
-        props.getStonk()
+        setStonkNum(Math.floor(Math.random()*51))
+        props.getStonk(stonkNum)
     }
 
     return (
@@ -43,4 +45,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchStonk,fetchFail})(Stonk)
+export default connect(mapStateToProps, {getStonk})(Stonk)
