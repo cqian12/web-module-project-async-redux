@@ -24,6 +24,7 @@ const Stonk = (props) => {
     }
 
     return (
+        stonk ? 
         <>
         <div>
             <h2>🤑🤑🤑 {stonk.ticker} 🤑🤑🤑</h2>
@@ -34,6 +35,7 @@ const Stonk = (props) => {
         </div>
         <div><button onClick={handleClick}>Get new stonk</button></div>
         </>
+        : null
     )
 }
 

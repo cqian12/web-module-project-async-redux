@@ -24,7 +24,7 @@ const Quote = (props) => {
     return (
         <>
         <div>
-            <h2>🤑🤑🤑 {quotation.quote} 🤑🤑🤑</h2>
+            <h2>🤑🤑🤑Quote: {quotation.quote} 🤑🤑🤑</h2>
             <ul>
                 <li>Character: {quotation.role}</li>
                 <li>Show: {quotation.show}</li>

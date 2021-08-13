@@ -9,8 +9,8 @@ export const getStonk = (id) => {
         dispatch(fetchStart())
         axios.get('https://dashboard.nbshare.io/api/v1/apps/reddit')
         .then(res => {
-            console.log(res.data)
-            dispatch(stonkSuccess(res.data.results[0]))
+            console.log(res.data[id])
+            dispatch(stonkSuccess(res.data[id]))
         })
         .catch(err => dispatch(fetchFail(err)))
     }
@@ -20,7 +20,10 @@ export const getQuote = () => {
     return (dispatch) => {
         dispatch(fetchStart())
         axios.get('https://movie-quote-api.herokuapp.com/v1/quote/')
-        .then(res => dispatch(quoteSuccess(res.data.results)))
+        .then(res => {
+            console.log(res.data)
+            dispatch(quoteSuccess(res.data))
+        })
         .catch(err => dispatch(fetchFail(err)))
     }
 }
